@@ -10,9 +10,7 @@
 
 			<section>
 				<h2>Select burger</h2>
-				<p>
-				This is where you select a burger to be delivered.
-				</p>
+				<p>This is where you select a burger to be delivered.</p>
 
 				<table>
 					<thead>
@@ -59,13 +57,31 @@
 
 			<section>
 				<h2>Customer Information</h2>
-				<p>
-				This is where you provide necessary information.
-				</p>
+				<p>This is where you provide necessary information.</p>
+
+				<h3>Delivery Information:</h3>
+				<form>
+					<p>
+						<label for="name">Full name</label><br />
+						<input type="text" id="name" name="name" required="required" placeholder="First- and last name" />
+					</p>
+					<p>
+						<label for="email">E-mail</label><br />
+						<input type="email" id="email" name="email" required="required" placeholder="E-mail address" />
+					</p>
+					<p>
+						<label for="street">Street</label><br />
+						<input type="text" id="street" name="street" required="required" placeholder="Street name" />
+					</p>
+					<p>
+						<label for="house">House</label><br />
+						<input type="number" id="house" name="house" required="required" placeholder="House number" />
+					</p>
+				</form>
 			</section>
 
 		</main>
-		<hr>
+		<hr />
 		<footer>
 			&copy; 2018 Hypothetical Burgers Inc.
 		</footer>
