@@ -11,10 +11,14 @@ body {
 	background-color: #000000;
 	color: #FFFFFF;
 	margin: 20px;
+	border: 2px dashed #FFFFFF;
+	padding: 20px;
 }
 
 #deliveryinfo {
 	margin: 20px;
+	border: 2px dashed #000000;
+	padding: 20px;
 }
 
 button {
