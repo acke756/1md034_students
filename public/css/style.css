@@ -19,3 +19,8 @@ button:hover {
 	background-color: #DDDDFF;
 	cursor: pointer;
 }
+
+table {
+	width: 90%;
+	margin: 0 auto;
+}
