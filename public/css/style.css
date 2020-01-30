@@ -6,3 +6,11 @@ body {
 .allergy {
 	font-weight: bold;
 }
+
+#burgerselect {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#deliveryinfo {
+}
