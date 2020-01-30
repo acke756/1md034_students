@@ -33,6 +33,20 @@ body {
 	padding: 20px;
 }
 
+#burgerwrapper {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto auto auto;
+}
+
+.burgername {
+	font-weight: bold;
+}
+
+.gridcell {
+	text-align: center;
+}
+
 #deliveryinfo {
 	margin: 20px;
 	border: 2px dashed #000000;
