@@ -10,9 +10,15 @@ body {
 #burgerselect {
 	background-color: #000000;
 	color: #FFFFFF;
+	margin: 20px;
 }
 
 #deliveryinfo {
+	margin: 20px;
+}
+
+button {
+	margin-top: 50px;
 }
 
 button:hover {
