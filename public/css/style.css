@@ -14,3 +14,8 @@ body {
 
 #deliveryinfo {
 }
+
+button:hover {
+	background-color: #DDDDFF;
+	cursor: pointer;
+}
