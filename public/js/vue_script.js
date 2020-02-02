@@ -1,6 +1,10 @@
 const vm = new Vue({
-	el: '#header',
+	el: '#fiddleme_vue',
 	data: {
-		header: 'Welcome to Glorious Burger delivery'
+		stockyBurger: stockyBurger.info(),
+		chickenDream: chickenDream.info(),
+		hotternTottern: hotternTottern.info(),
+		vectorBurger: vectorBurger.info(),
+		notBurger: notBurger.info()
 	}
 })
