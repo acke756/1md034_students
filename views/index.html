@@ -27,7 +27,7 @@
 					</div>
 					<div class="gridcell" v-for="burger in menu">
 						<ul>
-							<li v-for="allergene in burger.allergenes">Contains {{ allergene }}</li>
+							<li v-for="allergene in burger.allergenes">Contains <span class="allergy">{{ allergene }}</span></li>
 						</ul>
 					</div>
 				</div>
