@@ -4,30 +4,11 @@
 		<title>Glorious Burgery Delivery</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<script src="https://vuejs.org/js/vue.js"></script>
+		<script src="https://vuejs.org/js/vue.js" defer></script>
+		<script src="js/js_script.js" defer></script>
+		<script src="js/vue_script.js" defer></script>
 	</head>
 	<body>
-		<!-- FIDDLE CODE BEGINS -->
-
-		<h1>Pick a burger</h1>
-		<div id="js_burgers">
-		</div>
-
-		<h1>Pick a burger</h1>
-		<div id="vue_burgers">
-			<div v-for="burger in menu">
-				<h2>{{ burger.name }}</h2>
-				<ul>
-					<li>{{ burger.kCal }} kCal</li>
-					<li v-for="allergene in burger.allergenes">Contains {{ allergene }}</li>
-				</ul>
-			</div>
-		</div>
-
-		<!-- FIDDLE CODE ENDS -->
-
-		<!-- ORIGINAL BURGER CODE BEGINS -->
-		<!--
 		<main>
 			<header>
 				<h1 id="header">Welcome to Glorious Burger Delivery</h1>
@@ -38,7 +19,8 @@
 				<h2>Select burger</h2>
 				<p>This is where you select a burger to be delivered.</p>
 
-				<div id="burgerwrapper">
+				<!-- ORIGINAL CODE -->
+				<!--<div id="burgerwrapper">
 					<div class="gridcell burgername">
 						The stocky Burger
 					</div>
@@ -81,6 +63,8 @@
 						</ul>
 					</div>
 				</div>
+				-->
+				<!-- END OF COMMENT -->
 			</section>
 
 			<section id="deliveryinfo">
@@ -132,9 +116,5 @@
 		<footer>
 			&copy; 2018 Hypothetical Burgers Inc.
 		</footer>
-		-->
-		<!-- ORIGINAL BURGER CODE ENDS -->
-		<script src="js/js_script.js"></script>
-		<script src="js/vue_script.js"></script>
 	</body>
 </html>

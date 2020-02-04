@@ -25,14 +25,29 @@ let addNode = function(parentNode, nodeType, content) {
 	return newNode;
 }
 
-let burgerListParent = document.getElementById("js_burgers");
-for(var i = 0; i < menu.length; i++) {
-	let burgerDiv = addEmptyNode(burgerListParent, "div");
-	addNode(burgerDiv, "h2", menu[i].name);
-	let infoList = addEmptyNode(burgerDiv, "ul");
-	addNode(infoList, "li", menu[i].kCal + " kCal");
+let burgers = addEmptyNode(document.getElementById("burgerselect"), "div");
+burgers.id = "burgerwrapper";
 
+for(var i = 0; i < menu.length; i++) {
+	let newCell = addNode(burgers, "div", menu[i].name);
+	newCell.classList.add("gridcell");
+	newCell.classList.add("burgername");
+}
+
+for(i = 0; i < menu.length; i++) {
+	let newCell = addEmptyNode(burgers, "div");
+	newCell.classList.add("gridcell");
+	let img = addEmptyNode(newCell, "img");
+	img.src = menu[i].imgSrc;
+	img.height = "150";
+}
+
+for(i = 0; i < menu.length; i++) {
+	let newCell = addEmptyNode(burgers, "div");
+	newCell.classList.add("gridcell");
+	let ul = addEmptyNode(newCell, "ul");
+	addNode(ul, "li", menu[i].kCal + " kCal");
 	for(var j = 0; j < menu[i].allergenes.length; j++) {
-		addNode(infoList, "li", "Contains " + menu[i].allergenes[j]);
+		addNode(ul, "li", "Contains " + menu[i].allergenes[j]);
 	}
 }
