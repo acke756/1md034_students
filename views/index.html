@@ -9,17 +9,19 @@
 	<body>
 		<!-- FIDDLE CODE BEGINS -->
 
-		<div id="fiddleme_js">
-			<h1>Pick a burger</h1>
+		<h1>Pick a burger</h1>
+		<div id="js_burgers">
 		</div>
 
-		<div id="fiddleme_vue">
-			<h1>Pick a burger</h1>
-			<p>{{ stockyBurger }}</p>
-			<p>{{ chickenDream }}</p>
-			<p>{{ hotternTottern }}</p>
-			<p>{{ vectorBurger }}</p>
-			<p>{{ notBurger }}</p>
+		<h1>Pick a burger</h1>
+		<div id="vue_burgers">
+			<div v-for="burger in menu">
+				<h2>{{ burger.name }}</h2>
+				<ul>
+					<li>{{ burger.kCal }} kCal</li>
+					<li v-for="allergene in burger.allergenes">Contains {{ allergene }}</li>
+				</ul>
+			</div>
 		</div>
 
 		<!-- FIDDLE CODE ENDS -->
