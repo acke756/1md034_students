@@ -1,8 +1,6 @@
-/*
 const vm = new Vue({
-	el: "#vue_burgers",
+	el: "#burgerwrapper",
 	data: {
 		menu
 	}
 })
-*/

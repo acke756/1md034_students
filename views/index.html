@@ -18,6 +18,19 @@
 			<section id="burgerselect">
 				<h2>Select burger</h2>
 				<p>This is where you select a burger to be delivered.</p>
+				<div id="burgerwrapper">
+					<div class="gridcell burgername" v-for="burger in menu">
+						{{ burger.name }}
+					</div>
+					<div class="gridcell" v-for="burger in menu">
+						<img v-bind:src="burger.imgSrc" height="150">
+					</div>
+					<div class="gridcell" v-for="burger in menu">
+						<ul>
+							<li v-for="allergene in burger.allergenes">Contains {{ allergene }}</li>
+						</ul>
+					</div>
+				</div>
 
 				<!-- ORIGINAL CODE -->
 				<!--<div id="burgerwrapper">
