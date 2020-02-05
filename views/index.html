@@ -6,10 +6,11 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="https://vuejs.org/js/vue.js" defer></script>
 		<script src="js/menu.js" defer></script>
+		<script src="js/js_script.js" defer></script>
 		<script src="js/vue_script.js" defer></script>
 	</head>
 	<body>
-		<main>
+		<main id="main">
 			<header>
 				<h1 id="header">Welcome to Glorious Burger Delivery</h1>
 				<img id="headerimg" src="https://i1.wp.com/www.beststartcompton.org/wp-content/uploads/2019/02/39875853-header-wallpapers.jpg?fit=810%2C270&ssl=1" alt="Glorious Burger Delivery" title="Glorious Burger Delivery" />
@@ -20,7 +21,8 @@
 				<p>This is where you select a burger to be delivered.</p>
 				<div id="burgerwrapper">
 					<div class="gridcell burgername" v-for="burger in menu">
-						{{ burger.name }}
+						<input type="checkbox" v-bind:id="burger.name" v-bind:value="burger.name" v-model="checkedburgers" />
+						<label v-bind:for="burger.name">{{ burger.name }}</label>
 					</div>
 					<div class="gridcell" v-for="burger in menu">
 						<img v-bind:src="burger.imgSrc" height="150">
@@ -31,53 +33,6 @@
 						</ul>
 					</div>
 				</div>
-
-				<!-- ORIGINAL CODE -->
-				<!--<div id="burgerwrapper">
-					<div class="gridcell burgername">
-						The stocky Burger
-					</div>
-					<div class="gridcell burgername">
-						The Chicken Dream
-					</div>
-					<div class="gridcell burgername">
-						Hottern Tottern
-					</div>
-					<div class="gridcell">
-						<img src="https://image.shutterstock.com/image-photo/plant-based-burger-sesame-bun-600w-1543584050.jpg" alt="The stocky burger" title="The stocky burger" height="150" />
-					</div>
-					<div class="gridcell">
-						<img src="https://image.shutterstock.com/image-photo/studio-shoot-delicious-chicken-burger-600w-1502962535.jpg" alt="The chicken dream" title="The chicken dream" height="150" />
-					</div>
-					<div class="gridcell">
-						<img src="https://image.shutterstock.com/image-photo/burger-600w-360983072.jpg" alt="Hottern Tottern" title="Hottern Tottern" height="150" />
-					</div>
-					<div class="gridcell">
-						<ul>
-							<li>Chickpea patty</li>
-							<li>Got some nice cheese (<span class="allergy">contains lactose</span>)</li>
-							<li>Sourdough bread (<span class="allergy">contains gluten</span>)</li>
-						</ul>
-					</div>
-					<div class="gridcell">
-						<ul>
-							<li>Chicken patty</li>
-							<li>White bread (<span class="allergy">contains gluten</span>)</li>
-							<li><span class="allergy">Contains palm oil</span></li>
-							<li>720 kCal</li>
-						</ul>
-					</div>
-					<div class="gridcell">
-						<ul>
-							<li>High-quality beef</li>
-							<li>Covered in chili</li>
-							<li>Rye bread (<span class="allergy">contains gluten</span>)</li>
-							<li>Has weird white cheese (<span class="allergy">probably contains lactose</span>)</li>
-						</ul>
-					</div>
-				</div>
-				-->
-				<!-- END OF COMMENT -->
 			</section>
 
 			<section id="deliveryinfo">
@@ -85,26 +40,26 @@
 				<p>This is where you provide necessary information.</p>
 
 				<h3>Delivery Information:</h3>
-				<form>
+				<form v-on:submit.prevent="onSubmit">
 					<p>
 						<label for="name">Full name</label><br />
-						<input type="text" id="name" name="name" required="required" placeholder="First- and last name" />
+						<input type="text" v-model="name" id="name" name="name" required="required" placeholder="First- and last name" />
 					</p>
 					<p>
 						<label for="email">E-mail</label><br />
-						<input type="email" id="email" name="email" required="required" placeholder="E-mail address" />
+						<input type="email" v-model="email" id="email" name="email" required="required" placeholder="E-mail address" />
 					</p>
 					<p>
 						<label for="street">Street</label><br />
-						<input type="text" id="street" name="street" required="required" placeholder="Street name" />
+						<input type="text" v-model="street" id="street" name="street" required="required" placeholder="Street name" />
 					</p>
 					<p>
 						<label for="house">House</label><br />
-						<input type="number" id="house" name="house" required="required" placeholder="House number" />
+						<input type="number" v-model="house" id="house" name="house" required="required" placeholder="House number" />
 					</p>
 					<p>
 						<label for="pmethod">Payment Method</label><br />
-						<select id="pmethod" name="pmethod">
+						<select v-model="pmethod" id="pmethod" name="pmethod">
 							<option>MasterCard</option>
 							<option>Visa</option>
 							<option>Swish</option>
@@ -114,16 +69,37 @@
 					<p>
 						Gender<br />
 						<label for="male">Male</label>
-						<input type="radio" id="male" name="gender" /><br />
+						<input type="radio" v-model="gender" value="male" name="gender" /><br />
 						<label for="female">Female</label>
-						<input type="radio" id="female" name="gender" /><br />
+						<input type="radio" v-model="gender" value="female" name="gender" /><br />
 						<label for="undisclosed">Undisclosed</label>
-						<input type="radio" id="undisclosed" name="gender" checked="checked" /><br />
+						<input type="radio" v-model="gender" value="undisclosed" name="gender" checked="checked" /><br />
 					</p>
-					<button type="submit"><img src="https://f0.pngfuel.com/png/811/919/check-icon-png-clip-art.png" width="12" />Place Order</button>
+					<div id="orderplacer">
+						<button type="submit" v-on:click="placeOrder()">
+							<img src="https://f0.pngfuel.com/png/811/919/check-icon-png-clip-art.png" width="12" />
+							Place Order
+						</button>
+					</div>
 				</form>
 			</section>
 
+			<section id="received">
+				<h3>Received Order</h3>
+				<ul>
+					<li>Name: {{ name }}</li>
+					<li>E-mail: {{ email }}</li>
+					<li>Street: {{ street }}</li>
+					<li>House: {{ house }}</li>
+					<li>Payment method: {{ pmethod }}</li>
+					<li>Gender: {{ gender }}</li>
+					<li>Burgers:
+						<ul>
+							<li v-for="burger in checkedburgers">{{ burger }}</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
 		</main>
 		<hr />
 		<footer>

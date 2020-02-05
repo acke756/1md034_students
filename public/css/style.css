@@ -66,3 +66,7 @@ table {
 	width: 90%;
 	margin: 0 auto;
 }
+
+#received {
+	display: none;
+}
