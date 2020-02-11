@@ -32,11 +32,19 @@ const vm = new Vue({
 			this.orderDetails.y = event.clientY - 10 - event.currentTarget.getBoundingClientRect().top;
 		},
 		addOrder: function() {
-			socket.emit("addOrder", {
-				orderId: this.getNext(),
-				details: this.orderDetails,
-				orderItems: this.checkedburgers
-			});
+			if(this.mapClicked) {
+				socket.emit("addOrder", {
+					orderId: this.getNext(),
+					details: this.orderDetails,
+					orderItems: this.checkedburgers,
+					personInfo: {
+						name: this.name,
+						email: this.email,
+						pmethod: this.pmethod,
+						gender: this.gender
+					}
+				});
+			}
 		},
 		placeOrder: function() {
 			document.getElementById("received").style.display = "initial";
