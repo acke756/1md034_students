@@ -4,7 +4,8 @@
 		<title>Glorious Burgery Delivery</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<script src="https://vuejs.org/js/vue.js" defer></script>
+		<script src="/vue/vue.js" defer></script>
+		<script src="/socket.io/socket.io.js" defer></script>
 		<script src="js/menu.js" defer></script>
 		<script src="js/js_script.js" defer></script>
 		<script src="js/vue_script.js" defer></script>
@@ -49,6 +50,7 @@
 						<label for="email">E-mail</label><br />
 						<input type="email" v-model="email" id="email" name="email" required="required" placeholder="E-mail address" />
 					</p>
+					<!--
 					<p>
 						<label for="street">Street</label><br />
 						<input type="text" v-model="street" id="street" name="street" required="required" placeholder="Street name" />
@@ -57,6 +59,7 @@
 						<label for="house">House</label><br />
 						<input type="number" v-model="house" id="house" name="house" required="required" placeholder="House number" />
 					</p>
+					-->
 					<p>
 						<label for="pmethod">Payment Method</label><br />
 						<select v-model="pmethod" id="pmethod" name="pmethod">
@@ -74,6 +77,13 @@
 						<input type="radio" v-model="gender" value="female" name="gender" /><br />
 						<label for="undisclosed">Undisclosed</label>
 						<input type="radio" v-model="gender" value="undisclosed" name="gender" checked="checked" /><br />
+						<div class="view-box">
+							<div id="dots" v-on:click="addOrder">
+								<div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+									{{ key }}
+								</div>
+							</div>
+						</div>
 					</p>
 					<div id="orderplacer">
 						<button type="submit" v-on:click="placeOrder()">
@@ -89,8 +99,6 @@
 				<ul>
 					<li>Name: {{ name }}</li>
 					<li>E-mail: {{ email }}</li>
-					<li>Street: {{ street }}</li>
-					<li>House: {{ house }}</li>
 					<li>Payment method: {{ pmethod }}</li>
 					<li>Gender: {{ gender }}</li>
 					<li>Burgers:
