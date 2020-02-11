@@ -7,42 +7,35 @@ const socket = io();
 const vm = new Vue({
 	el: "#main",
 	data: {
+		nextId: 0,
+		mapClicked: false,
 		menu: menu,
 		name: "",
 		email: "",
 		pmethod: "PayPal",
 		gender: "undisclosed",
+		orderDetails: {
+			x: 0,
+			y: 0
+		},
 		orders: {},
 		checkedburgers: []
 	},
-	created: function() {
-		socket.on("initialize", function(data) {
-			this.orders = data.orders;
-		}.bind(this));
-
-		socket.on("currentQueue", function(data) {
-			this.orders = data.orders;
-		}.bind(this));
-	},
 	methods: {
 		getNext: function() {
-			let lastOrder = Object.keys(this.orders).reduce(function(last, next) {
-				return Math.max(last, next);
-			}, 0);
-			return lastOrder + 1;
+			this.nextId++;
+			return this.nextId;
 		},
-		addOrder: function(event) {
-			let offset = {
-				x: event.currentTarget.getBoundingClientRect().left,
-				y: event.currentTarget.getBoundingClientRect().top
-			};
+		displayOrder: function(event) {
+			this.mapClicked = true;
+			this.orderDetails.x = event.clientX - 10 - event.currentTarget.getBoundingClientRect().left;
+			this.orderDetails.y = event.clientY - 10 - event.currentTarget.getBoundingClientRect().top;
+		},
+		addOrder: function() {
 			socket.emit("addOrder", {
 				orderId: this.getNext(),
-				details: {
-					x: event.clientX - 10 - offset.x,
-					y: event.clientY - 10 - offset.y
-				},
-				orderItems: ["Beans", "Curry"]
+				details: this.orderDetails,
+				orderItems: this.checkedburgers
 			});
 		},
 		placeOrder: function() {

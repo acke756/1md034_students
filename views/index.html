@@ -41,7 +41,7 @@
 				<p>This is where you provide necessary information.</p>
 
 				<h3>Delivery Information:</h3>
-				<form v-on:submit.prevent="onSubmit">
+				<form v-on:submit.prevent>
 					<p>
 						<label for="name">Full name</label><br />
 						<input type="text" v-model="name" id="name" name="name" required="required" placeholder="First- and last name" />
@@ -50,16 +50,6 @@
 						<label for="email">E-mail</label><br />
 						<input type="email" v-model="email" id="email" name="email" required="required" placeholder="E-mail address" />
 					</p>
-					<!--
-					<p>
-						<label for="street">Street</label><br />
-						<input type="text" v-model="street" id="street" name="street" required="required" placeholder="Street name" />
-					</p>
-					<p>
-						<label for="house">House</label><br />
-						<input type="number" v-model="house" id="house" name="house" required="required" placeholder="House number" />
-					</p>
-					-->
 					<p>
 						<label for="pmethod">Payment Method</label><br />
 						<select v-model="pmethod" id="pmethod" name="pmethod">
@@ -78,15 +68,15 @@
 						<label for="undisclosed">Undisclosed</label>
 						<input type="radio" v-model="gender" value="undisclosed" name="gender" checked="checked" /><br />
 						<div class="view-box">
-							<div id="dots" v-on:click="addOrder">
-								<div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-									{{ key }}
+							<div id="dots" v-on:click="displayOrder">
+								<div v-if="mapClicked" v-bind:style="{ left: orderDetails.x + 'px', top: orderDetails.y + 'px'}">
+									T
 								</div>
 							</div>
 						</div>
 					</p>
 					<div id="orderplacer">
-						<button type="submit" v-on:click="placeOrder()">
+						<button type="submit" v-on:click="addOrder">
 							<img src="https://f0.pngfuel.com/png/811/919/check-icon-png-clip-art.png" width="12" />
 							Place Order
 						</button>
